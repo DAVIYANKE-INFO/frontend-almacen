@@ -30,7 +30,7 @@ Vue.use(VueToastr2)
 /**************************VARIABLE GLOBAL************************************/
 //var ip="http://192.168.0.10/sideas-backend/public";
 //var ip="http://192.168.0.150:8000";
-var ip="http://localhost:8000";
+var ip="http://192.168.0.10:4300/sigeal";
 //var ip="http://192.168.0.130:4300";
 Vue.store= Vue.prototype.store = ip;
 /**************************VARIABLE GLOBAL************************************/
