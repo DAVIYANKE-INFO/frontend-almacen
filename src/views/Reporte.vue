@@ -530,7 +530,7 @@ export default {
           generareportegeneral()
           {
             let comp = this;
-            axios.post('/api/v1/producto/reporte1',{},{
+            axios.post(comp.store+'/api/v1/producto/reporte1',{},{
               headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
             }).then(function (response) 
             {

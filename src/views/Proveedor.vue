@@ -191,7 +191,7 @@ export default {
       initialize () 
       {
                 let comp = this;
-                axios.get('/api/v1/proveedor',{
+                axios.get(comp.store+'/api/v1/proveedor',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -220,7 +220,7 @@ export default {
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.proveedores.splice(index, 1))
       {
                 //PARA LA ELIMINAR UN PROVEEDOR
-                axios.delete('/api/v1/proveedor/'+item.id_proveedor,{
+                axios.delete(comp.store+'/api/v1/proveedor/'+item.id_proveedor,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -252,7 +252,7 @@ export default {
         Object.assign(this.proveedores[this.editedIndex], this.editedItem)
                 //PARA EDITAR UN PROVEEDOR
                 console.log("editar--> ",comp.editedItem);
-                axios.put('/api/v1/proveedor/'+comp.editedItem.id_proveedor, comp.editedItem,{
+                axios.put(comp.store+'/api/v1/proveedor/'+comp.editedItem.id_proveedor, comp.editedItem,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -272,7 +272,7 @@ export default {
                 
                 //PARA LA CREACIÓN DE UN  PROVEEDOR
                 console.log("guardar--> ",comp.editedItem);
-                axios.post('/api/v1/proveedor/', comp.editedItem ,{
+                axios.post(comp.store+'/api/v1/proveedor/', comp.editedItem ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {

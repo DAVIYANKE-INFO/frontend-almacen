@@ -415,7 +415,7 @@ import axios from 'axios'
                                 //INICIO GUARDAR PEDIDOS
                                 var token=sessionStorage.getItem('token');
                                let comp = this;
-                                axios.post('/api/v1/producto/pedido', comp.auxpedidos ,{
+                                axios.post(comp.store+'/api/v1/producto/pedido', comp.auxpedidos ,{
                                 headers: { Authorization: 'Bearer '+token },
                                 }).then(function (response) 
                                 {
@@ -463,7 +463,7 @@ import axios from 'axios'
                         }
                         //console.log("id ",idd);
                         var token=sessionStorage.getItem('token');
-                        axios.post(`/api/v1/producto/${idd}/verifica_stock`,{cantidad_solicitada:pri.cantidad},{
+                        axios.post(comp.store+`/api/v1/producto/${idd}/verifica_stock`,{cantidad_solicitada:pri.cantidad},{
                         headers: { Authorization: 'Bearer '+token }
                         }).then(function (response) 
                         {
@@ -537,7 +537,7 @@ import axios from 'axios'
     {   
         var token=sessionStorage.getItem('token');
                 let comp = this;
-                axios.get('/api/v1/usuario/'+sessionStorage.getItem('usuario'),{
+                axios.get(comp.store+'/api/v1/usuario/'+sessionStorage.getItem('usuario'),{
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
@@ -556,7 +556,7 @@ import axios from 'axios'
     {
         var token=sessionStorage.getItem('token');
                 let comp = this;
-                axios.get('/api/v1/producto',{
+                axios.get(comp.store+'/api/v1/producto',{
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
@@ -576,7 +576,7 @@ import axios from 'axios'
             var token=sessionStorage.getItem('token');
                 var nrocargousuario=parseInt(sessionStorage.getItem('usuario')); 
                 let comp = this;
-                axios.get('/api/v1/cargo',{
+                axios.get(comp.store+'/api/v1/cargo',{
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {

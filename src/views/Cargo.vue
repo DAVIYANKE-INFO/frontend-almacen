@@ -354,7 +354,7 @@ export default {
       {
         
                 let comp = this;
-                axios.get('/api/v1/cargo',{
+                axios.get(comp.store+'/api/v1/cargo',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -371,7 +371,7 @@ export default {
                 });
 
 
-                  axios.get('/api/v1/usuario',{
+                  axios.get(comp.store+'/api/v1/usuario',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -398,7 +398,7 @@ export default {
 
 
                 
-                axios.get('/api/v1/regional',{
+                axios.get(comp.store+'/api/v1/regional',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -415,7 +415,7 @@ export default {
                 }); 
 
 
-                axios.get('/api/v1/direccion',{
+                axios.get(comp.store+'/api/v1/direccion',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -449,7 +449,7 @@ export default {
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.cargos.splice(index, 1))
       {
                 //PARA LA ELIMINAR UN CARGO
-                axios.delete('/api/v1/cargo/'+item.id_cargo,{
+                axios.delete(comp.store+'/api/v1/cargo/'+item.id_cargo,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -512,7 +512,7 @@ export default {
                   'nombre':comp.editedItem.nombre
                 }
 
-                axios.put('/api/v1/cargo/'+comp.editedItem.id_cargo, comp.auxmandardatos_1,{
+                axios.put(comp.store+'/api/v1/cargo/'+comp.editedItem.id_cargo, comp.auxmandardatos_1,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -569,7 +569,7 @@ export default {
                 }
                 //PARA LA CREACIÓN DE UN CARGO
                 console.log("guardar--> ",comp.auxmandardatos);
-                axios.post('/api/v1/cargo/', comp.auxmandardatos ,{
+                axios.post(comp.store+'/api/v1/cargo/', comp.auxmandardatos ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {

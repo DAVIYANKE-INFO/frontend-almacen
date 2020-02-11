@@ -219,7 +219,7 @@ export default {
       {
         
                 let comp = this;
-                axios.get('/api/v1/direccion',{
+                axios.get(comp.store+'/api/v1/direccion',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -234,7 +234,7 @@ export default {
 
 
 
-                axios.get('/api/v1/regional',{
+                axios.get(comp.store+'/api/v1/regional',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -267,7 +267,7 @@ export default {
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.direcciones.splice(index, 1))
       {
                 //PARA LA ELIMINAR UNA DIRECCION
-                axios.delete('/api/v1/direccion/'+item.id_direccion,{
+                axios.delete(comp.store+'/api/v1/direccion/'+item.id_direccion,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -297,7 +297,7 @@ export default {
         Object.assign(this.direcciones[this.editedIndex], this.editedItem)
                  //PARA EDITAR UNA DIRECCION
                 console.log("editar--> ",comp.editedItem);
-                axios.put('/api/v1/direccion/'+comp.editedItem.id_direccion, comp.editedItem,{
+                axios.put(comp.store+'/api/v1/direccion/'+comp.editedItem.id_direccion, comp.editedItem,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -332,7 +332,7 @@ export default {
 
                 //PARA LA CREACIÓN DE UNA DIRECCION
                 console.log("guardar--> ",comp.auxiliardir); 
-                axios.post('/api/v1/direccion/', comp.auxiliardir ,{
+                axios.post(comp.store+'/api/v1/direccion/', comp.auxiliardir ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {

@@ -199,7 +199,7 @@ export default {
       {
         
                 let comp = this;
-                axios.get('/api/v1/regional',{
+                axios.get(comp.store+'/api/v1/regional',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -228,7 +228,7 @@ export default {
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.regionales.splice(index, 1))
       {
                 //PARA LA ELIMINAR UNA REGIONAL
-                axios.delete('/api/v1/regional/'+item.id_regional,{
+                axios.delete(comp.store+'/api/v1/regional/'+item.id_regional,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -259,7 +259,7 @@ export default {
         Object.assign(this.regionales[this.editedIndex], this.editedItem)
                  //PARA EDITAR UNA REGIONAL
                 console.log("editar--> ",comp.editedItem);
-                axios.put('/api/v1/regional/'+comp.editedItem.id_regional, comp.editedItem,{
+                axios.put(comp.store+'/api/v1/regional/'+comp.editedItem.id_regional, comp.editedItem,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -279,7 +279,7 @@ export default {
         
                 //PARA LA CREACIÓN DE UNA REGIONAL
                 console.log("guardar--> ",comp.editedItem);
-                axios.post('/api/v1/regional/', comp.editedItem ,{
+                axios.post(comp.store+'/api/v1/regional/', comp.editedItem ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {

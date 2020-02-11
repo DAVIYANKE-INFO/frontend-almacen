@@ -229,7 +229,7 @@ import axios from 'axios'
     initialize () 
     {
                 let comp = this;
-                axios.get('/api/v1/producto',{
+                axios.get(comp.store+'/api/v1/producto',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -244,7 +244,7 @@ import axios from 'axios'
                 });
 
 
-                axios.get('/api/v1/unidad',{
+                axios.get(comp.store+'/api/v1/unidad',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -263,7 +263,7 @@ import axios from 'axios'
                     console.log("error", error)
                 });
 
-                axios.get('/api/v1/grupo_contable',{
+                axios.get(comp.store+'/api/v1/grupo_contable',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -304,7 +304,7 @@ import axios from 'axios'
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.desserts.splice(index, 1))
       {
                 //PARA LA ELIMINAR UN PRODUCTO 
-                axios.delete('/api/v1/producto/'+item.id_producto ,{
+                axios.delete(comp.store+'/api/v1/producto/'+item.id_producto ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -384,7 +384,7 @@ import axios from 'axios'
                 }
                     console.log("produ--> ",comp.productoauxiliar);
 
-                axios.put('/api/v1/producto/'+comp.editedItem.id_producto, comp.productoauxiliar ,{
+                axios.put(comp.store+'/api/v1/producto/'+comp.editedItem.id_producto, comp.productoauxiliar ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                   
                 }).then(function (response) 
@@ -417,7 +417,7 @@ import axios from 'axios'
                 //comp.editedItem.id_producto=500;
                 console.log("guardar--> ",this.auxiliarprod);
                 
-              axios.post('/api/v1/producto/', comp.auxiliarprod ,{
+              axios.post(comp.store+'/api/v1/producto/', comp.auxiliarprod ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                   
                 }).then(function (response) 

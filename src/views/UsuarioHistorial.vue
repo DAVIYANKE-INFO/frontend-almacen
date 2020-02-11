@@ -466,7 +466,7 @@ export default
       {
           var token=sessionStorage.getItem('token');
                 let comp = this;
-                axios.get('/api/v1/producto/pedido',{
+                axios.get(comp.store+'/api/v1/producto/pedido',{
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
@@ -503,7 +503,7 @@ console.log("--> ",this.desserts)
       var token=sessionStorage.getItem('token');
       this.aprobados=[];
               let comp = this;
-                axios.get('/api/v1/producto/pedido/aprobado',{
+                axios.get(comp.store+'/api/v1/producto/pedido/aprobado',{
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {

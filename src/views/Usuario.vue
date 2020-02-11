@@ -337,7 +337,7 @@ export default {
       inicializacargos ()
       {
                 let comp = this;
-                axios.get('/api/v1/rol',{
+                axios.get(comp.store+'/api/v1/rol',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -353,7 +353,7 @@ export default {
       {
         
                 let comp = this;
-                axios.get('/api/v1/usuario',{
+                axios.get(comp.store+'/api/v1/usuario',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -400,7 +400,7 @@ export default {
        if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.usuarios.splice(index, 1))
       {
                 //PARA LA ELIMINAR UNA USUARIO
-                axios.delete('/api/v1/usuario/'+item.id_usuario,{
+                axios.delete(comp.store+'/api/v1/usuario/'+item.id_usuario,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
                 }).then(function (response) 
                 {
@@ -445,7 +445,7 @@ export default {
                         'fecha_nacimiento':this.editedItem.persona.fecha_nacimiento,//'2019-11-10',//this.editedItem.persona.sexo,//'2019-11-10',
                         'roles':this.friends,//[1],
                       };
-                axios.put('/api/v1/usuario/'+comp.editedItem.id_usuario, t,{
+                axios.put(comp.store+'/api/v1/usuario/'+comp.editedItem.id_usuario, t,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjoxLCJ1c3VhcmlvIjoiYWRtaW4iLCJpZF9yb2wiOjEsImlkX3BlcnNvbmEiOjEsInZlbmNpbWllbnRvIjoiMjAxOS0xMi0xN1QyMDowMjowNi42MTlaIn0.t3slQG2tWw_JT5NHn8lnAnZsZ47ObdzkmWxifvpStkI' },
                 }).then(function (response) 
                 {
@@ -477,7 +477,7 @@ export default {
                       };
    
                 console.log("guardar--> ",t);
-               axios.post('/api/v1/usuario/', t ,{
+               axios.post(comp.store+'/api/v1/usuario/', t ,{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjoxLCJ1c3VhcmlvIjoiYWRtaW4iLCJpZF9yb2wiOjEsImlkX3BlcnNvbmEiOjEsInZlbmNpbWllbnRvIjoiMjAxOS0xMi0xN1QyMDowMjowNi42MTlaIn0.t3slQG2tWw_JT5NHn8lnAnZsZ47ObdzkmWxifvpStkI' },
                 }).then(function (response) 
                 {

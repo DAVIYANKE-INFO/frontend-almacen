@@ -118,7 +118,7 @@
     {
       sessionStorage.clear();
      let global = this;
-     axios.post('http://192.168.0.130:4500/autenticar',
+     axios.post(global.store+'/autenticar',
      {
                          username:global.codigousuario,
                          password:global.password

@@ -396,7 +396,7 @@ export default
       /*console.log("llega-->  ",index);
       console.log("llegaccc-->  ",item);*/
                 let comp = this;
-                axios.post(`/api/v1/producto/pedido/${item.productos[index].id_pedido}/aprobar`,{cantidad_aprobada :item.productos[index].cantidad_solicitada},{
+                axios.post(comp.store+`/api/v1/producto/pedido/${item.productos[index].id_pedido}/aprobar`,{cantidad_aprobada :item.productos[index].cantidad_solicitada},{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -452,7 +452,7 @@ export default
         console.log("aprobado --> ",item);
         
         let comp = this;
-        axios.get('/api/v1/producto/pedido/'+item.codigo_pedido+'/reporte',{
+        axios.get(comp.store+'/api/v1/producto/pedido/'+item.codigo_pedido+'/reporte',{
           headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
         }).then(function (response) 
         {
@@ -471,7 +471,7 @@ export default
       {
 
                 let comp = this;
-                axios.get('/api/v1/producto/pedido',{
+                axios.get(comp.store+'/api/v1/producto/pedido',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
@@ -507,7 +507,7 @@ console.log("--> ",this.desserts)
     {
       this.aprobados=[];
               let comp = this;
-                axios.get('/api/v1/producto/pedido/aprobado',{
+                axios.get(comp.store+'/api/v1/producto/pedido/aprobado',{
                   headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
                 }).then(function (response) 
                 {
