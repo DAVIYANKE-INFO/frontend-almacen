@@ -561,6 +561,7 @@ import axios from 'axios'
                 },
                     guardapedidos: function()
                     {
+                        var token=sessionStorage.getItem('token');
                                 this.auxpedidos={};
                                 console.log("PED: ",this.pedidos);
                                 
@@ -586,7 +587,7 @@ import axios from 'axios'
                                 //INICIO GUARDAR PEDIDOS
                                let comp = this;
                                 axios.post(comp.store+'/api/v1/producto/pedido', comp.auxpedidos ,{
-                                headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                                headers: { Authorization: 'Bearer '+token },
                                 }).then(function (response) 
                                 {
                                 console.log("RESPUESTA GUARDAR PEDIDO SERVIDOR: ",response); 
@@ -626,9 +627,9 @@ import axios from 'axios'
                             }
                         }
                         //console.log("id ",idd);
-
+                        var token=sessionStorage.getItem('token');
                         axios.post(pri.store+`/api/v1/producto/${idd}/verifica_stock`,{cantidad_solicitada:pri.cantidad},{
-                        headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                        headers: { Authorization: 'Bearer '+token }
                         }).then(function (response) 
                         {
                            console.log("errrrr ",response.data);
@@ -769,10 +770,10 @@ import axios from 'axios'
                 catch(function (error) {
                     console.log("error", error)
             });*/
-
+            var token=sessionStorage.getItem('token');
             let comp = this;
                 axios.get(comp.store+'/api/v1/cargo',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA PRODUCTO SERVIDOR: ",response); 
@@ -902,10 +903,10 @@ import axios from 'axios'
     },
     obtener_grupos()
     {
-            
+                var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/grupo_contable',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA GRUPO SERVIDOR: ",response); 
@@ -944,10 +945,10 @@ import axios from 'axios'
         });*/
 
 
-
+                var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/producto',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA PRODUCTO SERVIDOR: ",response); 
@@ -990,9 +991,10 @@ import axios from 'axios'
     },
         inicializacargos()
         {
+            var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/cargo',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 comp.cargos=response.data.datos.rows;
@@ -1008,21 +1010,6 @@ import axios from 'axios'
       },
           created: function() 
         {
-
-               /*  let comp = this;
-                axios.get('/api/v1/producto',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
-                }).then(function (response) 
-                {
-                console.log("PRUEBA OTRO SERVIDOR: ",response); 
-                
-                }).
-                catch(function (error) 
-                {
-                    console.log("error", error)
-                });
-                
-            this.initialize();*/
             this.inicializacargos();
             this.inicializausuarios();
             this.obtener_productos();

@@ -197,10 +197,11 @@ export default {
     {
       initialize () 
       {
+        var token=sessionStorage.getItem('token');
         
                 let comp = this;
                 axios.get(comp.store+'/api/v1/regional',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA OTRO SERVIDOR: ",response); 
@@ -222,6 +223,7 @@ export default {
 
     deleteItem (item) 
     {
+      var token=sessionStorage.getItem('token');
       let comp = this;
       console.log("ELEMENTO A ELIMINAR==> ",item);
       const index = this.regionales.indexOf(item)
@@ -229,7 +231,7 @@ export default {
       {
                 //PARA LA ELIMINAR UNA REGIONAL
                 axios.delete(comp.store+'/api/v1/regional/'+item.id_regional,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA ELIMINAR REGIONAL SERVIDOR: ",response);
@@ -253,6 +255,7 @@ export default {
 
     save () 
     {
+      var token=sessionStorage.getItem('token');
       let comp = this;
       if (this.editedIndex > -1) 
       {
@@ -260,7 +263,7 @@ export default {
                  //PARA EDITAR UNA REGIONAL
                 console.log("editar--> ",comp.editedItem);
                 axios.put(comp.store+'/api/v1/regional/'+comp.editedItem.id_regional, comp.editedItem,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA EDITAR REGIONAL SERVIDOR: ",response); 
@@ -280,7 +283,7 @@ export default {
                 //PARA LA CREACIÓN DE UNA REGIONAL
                 console.log("guardar--> ",comp.editedItem);
                 axios.post(comp.store+'/api/v1/regional/', comp.editedItem ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA GUARDAR REGIONAL SERVIDOR: ",response); 

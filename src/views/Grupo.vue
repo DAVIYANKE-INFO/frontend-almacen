@@ -185,9 +185,10 @@ export default {
     {
       initialize () 
       {
+        var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/grupo_contable',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA OTRO SERVIDOR: ",response); 
@@ -209,13 +210,14 @@ export default {
 
     deleteItem (item) 
     {
+      var token=sessionStorage.getItem('token');
       let comp = this;
       console.log("ELEMENTO A ELIMINAR==> ",item);
       const index = this.grupos.indexOf(item)
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.grupos.splice(index, 1))
       {                //PARA LA ELIMINAR UN  GRUPO
                 axios.delete(comp.store+'/api/v1/grupo_contable/'+item.id_grupo_contable ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA ELIMINAR GRUPO SERVIDOR: ",response);
@@ -240,6 +242,7 @@ export default {
 
     save () 
     {
+      var token=sessionStorage.getItem('token');
       let comp = this;
       if (this.editedIndex > -1) 
       {
@@ -247,7 +250,7 @@ export default {
                 //PARA EDITAR LA GRUPO DE UN GRUPO
                 console.log("editar--> ",comp.editedItem.id_grupo_contable,{nombre:comp.editedItem.nombre});
                 axios.put(comp.store+'/api/v1/grupo_contable/'+comp.editedItem.id_grupo_contable, comp.editedItem,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA GUARDAR GRUPO SERVIDOR: ",response);
@@ -267,7 +270,7 @@ export default {
                 //PARA LA CREACIÓN DE UN GRUPO 
                 
                 axios.post(comp.store+'/api/v1/grupo_contable/', {nombre:comp.editedItem.nombre,codigo:comp.editedItem.codigo} ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA GUARDAR GRUPO SERVIDOR: ",response); 

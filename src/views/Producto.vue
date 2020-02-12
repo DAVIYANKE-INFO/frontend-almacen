@@ -228,9 +228,10 @@ import axios from 'axios'
   methods: {
     initialize () 
     {
+      var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/producto',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA OTRO SERVIDOR: ",response); 
@@ -245,7 +246,7 @@ import axios from 'axios'
 
 
                 axios.get(comp.store+'/api/v1/unidad',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA UNIDAD SERVIDOR: ",response);
@@ -264,7 +265,7 @@ import axios from 'axios'
                 });
 
                 axios.get(comp.store+'/api/v1/grupo_contable',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA UNIDAD SERVIDOR: ",response);
@@ -299,13 +300,13 @@ import axios from 'axios'
       let comp = this;
       const index = this.desserts.indexOf(item)
       
-
+      var token=sessionStorage.getItem('token');
       //console.log("cor ",confirm('¿ Esta seguro que desea eliminar este elemento ?'));
       if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.desserts.splice(index, 1))
       {
                 //PARA LA ELIMINAR UN PRODUCTO 
                 axios.delete(comp.store+'/api/v1/producto/'+item.id_producto ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA ELIMINAR PRODUCTO SERVIDOR: ",response); 
@@ -330,6 +331,7 @@ import axios from 'axios'
 
     save () 
     {
+      var token=sessionStorage.getItem('token');
                 let comp = this;
                 var defineunidad=0;
                 var definegrupo=0;
@@ -385,7 +387,7 @@ import axios from 'axios'
                     console.log("produ--> ",comp.productoauxiliar);
 
                 axios.put(comp.store+'/api/v1/producto/'+comp.editedItem.id_producto, comp.productoauxiliar ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                   
                 }).then(function (response) 
                 {
@@ -418,7 +420,7 @@ import axios from 'axios'
                 console.log("guardar--> ",this.auxiliarprod);
                 
               axios.post(comp.store+'/api/v1/producto/', comp.auxiliarprod ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                   
                 }).then(function (response) 
                 {

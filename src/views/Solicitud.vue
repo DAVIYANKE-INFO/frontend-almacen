@@ -389,6 +389,7 @@ export default
       },
       enviadatosdeentradas(index,item)
       {
+        var token=sessionStorage.getItem('token');
       // console.log("obrtiene id --> ",this.desserts[this.desserts.indexOf(item)].id_pedido);
       // var tt= this.desserts[this.desserts.indexOf(item)].id_pedido;
       //console.log("ssas ", tt)
@@ -397,7 +398,7 @@ export default
       console.log("llegaccc-->  ",item);*/
                 let comp = this;
                 axios.post(comp.store+`/api/v1/producto/pedido/${item.productos[index].id_pedido}/aprobar`,{cantidad_aprobada :item.productos[index].cantidad_solicitada},{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                     console.log("SOLICITUDES ",response); 
@@ -450,10 +451,10 @@ export default
       generar_solicitud_porusuario(item)
       {
         console.log("aprobado --> ",item);
-        
+        var token=sessionStorage.getItem('token');
         let comp = this;
         axios.get(comp.store+'/api/v1/producto/pedido/'+item.codigo_pedido+'/reporte',{
-          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+          headers: { Authorization: 'Bearer '+token }
         }).then(function (response) 
         {
             //console.log("SOLICITUDES OFICIAL ",response); 
@@ -469,10 +470,10 @@ export default
 
       inicializasolicitudes ()
       {
-
+                var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/producto/pedido',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                     console.log("SOLICITUDES OFICIALes ",response.data.datos); 
@@ -505,10 +506,11 @@ console.log("--> ",this.desserts)
       },
     initializeaprobados () 
     {
+      var token=sessionStorage.getItem('token');
       this.aprobados=[];
               let comp = this;
                 axios.get(comp.store+'/api/v1/producto/pedido/aprobado',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                   console.log("SOLICITUDES APROBADAS--> ",response.data.datos); 

@@ -13,8 +13,6 @@
       </v-row>
   <br>-->
         <center>
-
-
 <!--*******************************INICIO BUSCADOR***************************************-->
   <v-toolbar flat color="white" class="elevation-1">
       <v-toolbar-title style="font-size:25px;font-weight:bold;color:#394BCD;">CARGOS</v-toolbar-title>
@@ -352,10 +350,10 @@ export default {
     {
       initialize () 
       {
-        
+                var token=sessionStorage.getItem('token');
                 let comp = this;
                 axios.get(comp.store+'/api/v1/cargo',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA OTRO SERVIDOR: ",response); 
@@ -372,7 +370,7 @@ export default {
 
 
                   axios.get(comp.store+'/api/v1/usuario',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA UNIDAD SERVIDOR: ",response);
@@ -399,7 +397,7 @@ export default {
 
                 
                 axios.get(comp.store+'/api/v1/regional',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA OTRO SERVIDOR: ",response); 
@@ -416,7 +414,7 @@ export default {
 
 
                 axios.get(comp.store+'/api/v1/direccion',{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' }
+                  headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
                 console.log("PRUEBA DIRECCION OTRO SERVIDOR: ",response); 
@@ -443,6 +441,7 @@ export default {
 
     deleteItem (item) 
     {
+      var token=sessionStorage.getItem('token');
       let comp = this;
       console.log("ELEMENTO A ELIMINAR==> ",item);
       const index = this.cargos.indexOf(item)
@@ -450,7 +449,7 @@ export default {
       {
                 //PARA LA ELIMINAR UN CARGO
                 axios.delete(comp.store+'/api/v1/cargo/'+item.id_cargo,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA ELIMINAR CARGO SERVIDOR: ",response);
@@ -474,8 +473,9 @@ export default {
 
     save () 
     {
+      var token=sessionStorage.getItem('token');
       var variable_id_usuario=0;
-                var variable_id_direccion=0;
+      var variable_id_direccion=0;
       let comp = this;
       if (this.editedIndex > -1) 
       {
@@ -513,7 +513,7 @@ export default {
                 }
 
                 axios.put(comp.store+'/api/v1/cargo/'+comp.editedItem.id_cargo, comp.auxmandardatos_1,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA EDITAR CARGO SERVIDOR: ",response); 
@@ -535,11 +535,8 @@ export default {
 
       } 
       else 
-      {
-                
-
-                 
-               console.log("cunato ",this.editedItem);
+      {   
+            console.log("cunato ",this.editedItem);
             for(var n=0;n<comp.usuariovale.length;n++)
               {
                //   console.log("--> "+ (comp.usuariovale[j].persona.nombres) + " " + (comp.usuariovale[j].persona.primer_apellido) + " " + (comp.usuariovale[j].persona.segundo_apellido) +" == " + (this.editedItem.usuario.persona.nombres)+" "+(this.editedItem.usuario.persona.primer_apellido)+" "+(this.editedItem.usuario.persona.segundo_apellido));
@@ -570,7 +567,7 @@ export default {
                 //PARA LA CREACIÓN DE UN CARGO
                 console.log("guardar--> ",comp.auxmandardatos);
                 axios.post(comp.store+'/api/v1/cargo/', comp.auxmandardatos ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjozLCJ1c3VhcmlvIjoiY21hY3VjaGFwaSIsImlkX3JvbCI6MSwiaWRfcGVyc29uYSI6MywidmVuY2ltaWVudG8iOiIyMDE5LTExLTA2VDE1OjIxOjAxLjQ0NFoifQ.0ivBxGxRrCjfzF117Iby8ho6B0ZW3Eb31480tEY1WD4' },
+                  headers: { Authorization: 'Bearer '+token },
                 }).then(function (response) 
                 {
                 console.log("RESPUESTA GUARDAR CARGO SERVIDOR: ",response); 
