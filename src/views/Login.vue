@@ -13,16 +13,16 @@
         >
           <v-col
             cols="12"
-            sm="8"
-            md="5"
+            sm="5"
+            md="3"
           >
             <v-card class="elevation-12">
               <v-toolbar
-                color='#394BCD'
+                color='#58B55E'
                 dark
                 flat
               >
-                <v-toolbar-title>SISTEMA DE GESTION Y CONTROL DE ALMACEN.</v-toolbar-title>
+                <v-toolbar-title>SISALM</v-toolbar-title>
                
                 <v-spacer></v-spacer>
                 <v-tooltip bottom>
@@ -104,7 +104,7 @@
           password:"Developer",
           drawer: null,
           lista:[],
-          image:'fondosicodeal.jpg',
+          image:'fondo.jpg',
     }},
 
   methods: 
@@ -118,7 +118,7 @@
     {
       sessionStorage.clear();
      let global = this;
-     axios.post(global.store+'/autenticar',
+     axios.post(global.storepublic+'/autenticar',
      {
                          username:global.codigousuario,
                          password:global.password

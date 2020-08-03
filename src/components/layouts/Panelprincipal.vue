@@ -213,7 +213,7 @@
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title>
-        <h2 id="textocolorblanco">SISTEMA DE GESTION DE ALMACÉN</h2>
+        <h2 id="textocolorblanco">SISALM</h2>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -239,7 +239,7 @@
           </v-img></v-avatar>-->
           
 
-          <v-btn class="ma-2" outlined color="white" @click="salir()">CERRAR SESIÓN</v-btn>
+          <v-btn class="ma-2" outlined color="white" @click="salir()">Cerrar Sesión</v-btn>
      
 
       <v-btn id="textocolorblanco" class="mx-2" fab dark large
@@ -356,7 +356,7 @@
     >
       <span 
       style="color:white;"
-      class="px-4">&copy; {{ new Date().getFullYear() }}</span>
+      class="px-4">&copy; {{ new Date().getFullYear() }}, Unidad de Sistemas AFCOOP</span>
     </v-footer>
     <!--FIN FOOTER-->
   </v-app>

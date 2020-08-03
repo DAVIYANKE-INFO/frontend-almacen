@@ -1,12 +1,12 @@
 <template>
-    <v-container fluid class="pa-0">
+    <v-container fluid class="pa-0, container" >
 
           
-        <v-row style="height:50%;" class="divangular" >
+        <v-row class="divangular" >
           <v-col class="divimagen" >
-            <h2 id="textoblanco" style="margin-left:40%;">Sistema de Gestión y Control de Almacén</h2>
-            <h2 id="textoblanco" style="margin-left:40%;">Dirección Administrativa Financiera</h2>
-            <img src="@/images/logo.png" width="450" height="200" alt="">
+            <img src="@/images/logo.png" alt="" class="image">
+            <br><br>
+            <h2 id="textoblanco">Sistema de Gestión y Control de Almacén SISALM - AFCOOP</h2>
                               <!--<v-select id="textoblanco" style="width:250px;text-color:white;"
                                   :items="años"
                                   label="Seleccione año"
@@ -115,10 +115,8 @@
       },
     created: function() 
         {
-          console.log("entra hasta aqui");
           let varia =this;    
           varia.$store.commit('SET_LAYOUT', 'panelprincipal-layout');
-          console.log("PASAA");      
         }
 
   }
@@ -135,29 +133,33 @@
     border-bottom: 150px solid transparent;
 }
 .divangular {
-  height:500px;
-  background-color: RGB(39,53,166);
-  margin-top: -215px;
-  padding: 5% 50px; 
-  -webkit-transform: skewY(8deg);
-  -moz-transform: skewY(8deg);
-  -ms-transform: skewY(8deg);
-  -o-transform: skewY(8deg);
-  transform: skewY(8deg);
+  height:60%;
+  background-color:#EFEFEF;
+  text-align: center;
+
 }
 
 .divimagen{
-  align: center;
-  margin-left: 20%;
-  margin-top: 250px;
-   -webkit-transform: skewY(0deg);
-  -moz-transform: skewY(-8deg);
-  -ms-transform: skewY(-8deg);
-  -o-transform: skewY(-8deg);
-  transform: skewY(-8deg);
+  text-align: center;
 }
+.container {
+  height: 100%;
+}
+.image {
+  height: 250px;
+  width: 550px;
+}
+
 #textoblanco{
-  color:white;
+  color: #1B1464;
   font-weight: normal;
+  text-align: center;
 }
+@media (max-width: 600px){
+  .image {
+    height: 150px;
+     width: 350px;
+  }
+}
+
 </style>

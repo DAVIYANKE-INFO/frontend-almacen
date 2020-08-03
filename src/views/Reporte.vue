@@ -1,253 +1,10 @@
 <template>
 <v-container fluid>
     <v-row align="center" justify="center">
-    <!--**********************************1ER COMPONENTE************************************-->
-             <v-col cols="8" >
-                <v-card 
-                :elevation="hover ? 24 : 6"
-              class="ma-0 pa-0"
-                    
-                    max-width="1200"
-                    outlined
-                    >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                        <div class="overline mb-4">REPORTE ANUAL</div>
-                        <v-list-item-title class="headline mb-1">GESTIÓN</v-list-item-title>
-                        <v-list-item-subtitle>Seleccione una de las siguientes opciones...</v-list-item-subtitle>
-                        </v-list-item-content>
 
-                        <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="red"
-                        ></v-list-item-avatar>
-                    </v-list-item>
-                    <v-row align="center" justify="center"> 
-                    <v-col class="text-center" cols="4">
-                    <!--<object style="width:100%;" v-bind:data="imageUrl" type="application/pdf" width="900" height="400" v-if="imageUrl"   >
-                    </object>-->
-                               <!-- <object  data="imageName"></object>
-                                <object src="imageUrl" height="150" v-if="imageUrl"></object> -->
-                                <v-text-field label="Seleccione su archivo PDF : " @click='pickFile' v-model='imageName' prepend-icon='attach_file'>
-                                </v-text-field>
-                                <input
-                                    type="file"
-                                    style="display: none"
-                                    ref="image"
-                                    accept="application/pdf"
-                                    @change="onFilePicked"
-                                >
-                    </v-col>
-                      <v-col class="text-center" cols="4">
-                        <v-select
-                            :items="años"
-                          label="Seleccione año"
-                          color="red"
-                          v-model="nombreinformeanual"
-                          outline>
-                        </v-select>
-                    </v-col>
-                    </v-row>
-                    <v-row align="center" justify="center"> 
-                        <v-col class="text-center" cols="3">
-                            <v-btn text @click="subirinformepdf()">SUBIR</v-btn>
-                        </v-col>
-                        <v-col class="text-center" cols="3">
-                            <v-btn @click="generareporteanual()" text>GENERAR</v-btn>
-                        </v-col>
-                    </v-row>
-                    </v-card>
-        </v-col>
-
-
-
-
-
-
-    <!--**********************************2DO COMPONENTE************************************-->
-        <v-col cols="8">
-                <v-card
-                    :elevation="hover ? 24 : 6"
-              class="ma-0 pa-0"
-                    max-width="1200"
-                    outlined>
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                        <div class="overline mb-4">SALIDAS</div>
-                        <v-list-item-title class="headline mb-1">REPORTES SALIDAS</v-list-item-title>
-                        <v-list-item-subtitle>Seleccione una de las siguientes opciones...</v-list-item-subtitle>
-                        </v-list-item-content>
-                
-                        <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="orange"
-                        ></v-list-item-avatar>
-                    </v-list-item>
-                
-                    
-                    <v-row align="center" justify="center"> 
-                        <v-col class="text-center" cols="4">
-                            <v-select
-                               :items="mesessalidas"
-                                label="Seleccione mes..."
-                                v-model="nombremessalida"
-                                color="red"
-                                outline
-                                autocomplete>
-                            </v-select>
-                        </v-col>
-                    </v-row>
-
-
-                    <v-row align="center" justify="center">
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-date-picker locale="es" v-model="rango_fechas_salidas" range color="orange"></v-date-picker>
-                        </v-col>
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-text-field v-model="rangotextosalidas" label="Rango de Fechas" prepend-icon="event" readonly></v-text-field>
-                            <h4>model: {{ rango_fechas_salidas }}</h4>
-                        </v-col>
-                    </v-row>
-                    <v-row align="end" justify="end"> 
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>LIMPIAR</v-btn>
-                        </v-col>
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>ACEPTAR</v-btn>
-                        </v-col>
-                        <v-col class="text-center" cols="2">
-                            <v-btn @click="generarsalidas()" text>GENERAR</v-btn>
-                        </v-col>
-                    </v-row>
-                    
-                 
-            </v-card>
-        </v-col>
-
-
-
-
-
-
-
-
-
-    <!--**********************************3ER COMPONENTE************************************-->
- <v-col cols="8">
-                <v-card
-                    :elevation="hover ? 24 : 6"
-              class="ma-0 pa-0"
-                    max-width="1200"
-                    outlined
-                    >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                        <div class="overline mb-4">ENTRADAS</div>
-                        <v-list-item-title class="headline mb-1">REPORTES ENTRADAS</v-list-item-title>
-                        <v-list-item-subtitle>Seleccione una de las siguientes opciones...</v-list-item-subtitle>
-                        </v-list-item-content>
-                
-                        <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="green"
-                        ></v-list-item-avatar>
-                    </v-list-item>
-                    <v-row align="center" justify="center"> 
-                        <v-col class="text-center" cols="4">
-                            <v-select
-                               :items="mesesentradas"
-                                label="Seleccione mes..."
-                                v-model="nombremesentrada"
-                                color="red"
-                                outline
-                                autocomplete>
-                            </v-select>
-                        </v-col>
-                    </v-row>
-                    <v-row align="center" justify="center">
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-date-picker locale="es" v-model="rango_fechas_entradas" range color="green"></v-date-picker>
-                        </v-col>
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-text-field v-model="rangotextoentradas" label="Rango de Fechas" prepend-icon="event" readonly></v-text-field>
-                            <h4>model: {{ rango_fechas_salidas }}</h4>
-                        </v-col>
-                    </v-row>
-                    <v-row align="end" justify="end"> 
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>LIMPIAR</v-btn>
-                        </v-col>
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>ACEPTAR</v-btn>
-                        </v-col>
-                    </v-row>
-                    
-                 
-            </v-card>
-        </v-col>
-
-
-
-
-
-    <!--**********************************4TO COMPONENTE************************************-->
- <v-col cols="8">
-                <v-card
-                    :elevation="hover ? 24 : 6"
-              class="ma-0 pa-0"
-                    max-width="1200"
-                    outlined
-                    >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                        <div class="overline mb-4">SALDOS</div>
-                        <v-list-item-title class="headline mb-1">REPORTES SALDOS</v-list-item-title>
-                        <v-list-item-subtitle>Seleccione una de las siguientes opciones...</v-list-item-subtitle>
-                        </v-list-item-content>
-                
-                        <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="blue"
-                        ></v-list-item-avatar>
-                    </v-list-item>
-                 <v-row align="center" justify="center"> 
-                        <v-col class="text-center" cols="4">
-                            <v-select
-                               :items="mesessaldos"
-                                label="Seleccione mes..."
-                                v-model="nombremessaldo"
-                                color="red"
-                                outline
-                                autocomplete>
-                            </v-select>
-                        </v-col>
-                    </v-row>
-                    <v-row align="center" justify="center">
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-date-picker locale="es" v-model="rango_fechas_saldos" range></v-date-picker>
-                        </v-col>
-                        <v-col align="center" justify="center" cols="6" sm="6">
-                            <v-text-field v-model="rangotextosaldos" label="Rango de Fechas" prepend-icon="event" readonly></v-text-field>
-                            <h4>model: {{ rango_fechas_salidas }}</h4>
-                        </v-col>
-                    </v-row>
-                    <v-row align="end" justify="end"> 
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>LIMPIAR</v-btn>
-                        </v-col>
-                        <v-col class="text-center" cols="2">
-                            <v-btn text>ACEPTAR</v-btn>
-                        </v-col>
-                    </v-row>   
-            </v-card>
-        </v-col>    
   
     <!--**********************************5TO COMPONENTE************************************-->
-        <v-col cols="8" >
+        <v-col cols="10" >
                 <v-card 
                     :elevation="hover ? 24 : 6"
               class="ma-0 pa-0"
@@ -269,20 +26,66 @@
                     </v-list-item>
                     <v-row align="center" justify="center"> 
                         <v-col class="text-center" cols="4">
-                            <v-select
-                                :items="añosgeneral"
-                                label="Seleccione año"
-                                color="red"
-                                v-model="nombreinformeanual"
-                                outline>
-                            </v-select>
+                          <v-menu
+                            ref="menu1"
+                            v-model="menu1"
+                            :close-on-content-click="false"
+                            :return-value.sync="fecha_ini"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="290px"
+                          >
+                            <template v-slot:activator="{ on }">
+                              <v-text-field
+                                v-model="fecha_ini"
+                                label="Fecha Inicio"
+                                prepend-icon="event"
+                                readonly
+                                v-on="on"
+                              ></v-text-field>
+                            </template>
+                              <v-date-picker locale="es" v-model="fecha_ini" no-title scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="primary" @click="menu1 = false">Cancel</v-btn>
+                                <v-btn text color="primary" @click="$refs.menu1.save(fecha_ini)">OK</v-btn>
+                              </v-date-picker>
+                            </v-menu>
                         </v-col>
+
+                        <v-col class="text-center" cols="4">
+                          <v-menu
+                            ref="menu2"
+                            v-model="menu2"
+                            :close-on-content-click="false"
+                            :return-value.sync="fecha_fin"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="290px"
+                          >
+                            <template v-slot:activator="{ on }">
+                              <v-text-field
+                                v-model="fecha_fin"
+                                label="Fecha Fin"
+                                prepend-icon="event"
+                                readonly
+                                v-on="on"
+                              ></v-text-field>
+                            </template>
+                              <v-date-picker locale="es" v-model="fecha_fin" no-title scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="primary" @click="menu2 = false">Cancel</v-btn>
+                                <v-btn text color="primary" @click="$refs.menu2.save(fecha_fin)">OK</v-btn>
+                              </v-date-picker>
+                            </v-menu>
+                        </v-col>
+
                         <v-col class="text-center" cols="4">
                             <div class="my-2">
                                 <v-btn color="success" dark large @click="generareportegeneral()">GENERAR INFORME</v-btn>
                             </div>
                         </v-col>
                     </v-row>
+
                     </v-card>
         </v-col>
     </v-row>
@@ -338,7 +141,7 @@
           </v-card-title>
   
           <v-card-text>
-            	<object style="width:100%;" v-bind:data="'data:application/pdf;base64,'   +variable_solicitud" type="application/pdf" width="900" height="400">
+            	<object style="width:100%;" v-bind:data="'data:application/pdf;base64,'   +variable_solicitud" type="application/pdf" width="900" height="600">
               </object>
           </v-card-text>
   
@@ -405,15 +208,8 @@ export default {
         defaultSelected1:{},
         defaultSelected2:{},
         defaultSelected3:{},
-        rango_fechas_salidas: [a_hoy+'-'+m_hoy+'-'+d_hoy,a_hoy+'-'+m_hoy+'-'+d_hoy],//['2019-09-10', '2019-09-20'],
-        rango_fechas_entradas: [a_hoy+'-'+m_hoy+'-'+d_hoy,a_hoy+'-'+m_hoy+'-'+d_hoy],//['2019-09-10', '2019-09-20'],
-        rango_fechas_saldos: [a_hoy+'-'+m_hoy+'-'+d_hoy,a_hoy+'-'+m_hoy+'-'+d_hoy],//['2019-09-10', '2019-09-20'],
-        mesessalidas: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'],
-        mesesentradas: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'],
-        mesessaldos: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'],
-        años:['2018','2019','2020','2021','2022','2023','2024','2025','2026','2027','2028','2029','2030','2031','2032','2033','2034','2035','2036','2037','2038','2039','2040'],
-        añosgeneral:['2018','2019','2020','2021','2022','2023','2024','2025','2026','2027','2028','2029','2030','2031','2032','2033','2034','2035','2036','2037','2038','2039','2040'],
-
+        fecha_ini: new Date().toISOString().substr(0, 10),
+        fecha_fin: new Date().toISOString().substr(0, 10),
         }),
         computed: {
         rangotextosalidas () 
@@ -531,7 +327,12 @@ export default {
           {
             var token=sessionStorage.getItem('token');
             let comp = this;
-            axios.post(comp.store+'/api/v1/producto/reporte1',{},{
+            const datos = {
+              fecha_inicial : this.fecha_ini,
+              fecha_fin: this.fecha_fin
+            }
+              console.log('datos: ', datos);
+            axios.post(comp.store+'/api/v1/producto/reporte1', datos ,{
               headers: { Authorization: 'Bearer '+token }
             }).then(function (response) 
             {

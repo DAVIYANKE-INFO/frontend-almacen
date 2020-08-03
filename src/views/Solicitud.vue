@@ -260,7 +260,7 @@
             Solicitud de Material
           </v-card-title>
           <v-card-text>
-            <object style="width:100%;" v-bind:data="'data:application/pdf;base64,'+variable_solicitud" type="application/pdf"  height="400">
+            <object style="width:100%;" v-bind:data="'data:application/pdf;base64,'+variable_solicitud" type="application/pdf"  height="600">
               </object>
           </v-card-text>
   

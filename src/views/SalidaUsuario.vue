@@ -415,23 +415,7 @@ import axios from 'axios'
                                 //INICIO GUARDAR PEDIDOS
                                 var token=sessionStorage.getItem('token');
                                let comp = this;
-                                axios.post(comp.store+'/api/v1/producto/pedido', comp.auxpedidos ,{
-                                headers: { Authorization: 'Bearer '+token },
-                                }).then(function (response) 
-                                {
-                                console.log("RESPUESTA GUARDAR PEDIDO SERVIDOR: ",response); 
-                                comp.$toastr.success('PEDIDO GUARDADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
-                                comp.auxpedidos={};
-                                comp.pedidos=[];
-                                comp.limpiar();
-                                comp.auxproductos = [];
-                                //console.log("PEDidos: ",comp.auxpedidos);
-                                }).
-                                catch(function (error) 
-                                {
-                                    console.log("error", error)
-                                    comp.$toastr.error('POR FAVOR, REVISE SUS DATOS', 'ERROR', {positionClass:"toast-bottom-center",timeOut: 2000});
-                                });
+                              
                         }
                         else
                         {

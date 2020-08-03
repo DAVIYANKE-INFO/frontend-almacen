@@ -573,13 +573,14 @@ import axios from 'axios'
                                     }
                                     this.t.push(this.r);                                
                                 }
+                                 console.log('this.fechaingreso: ', this.fechaingreso);
                                  var fechita=this.fechaingreso.split('-');
                                 var date=fechita[0]+"-"+fechita[1]+"-"+fechita[2];
                                 console.log("fecha envia  ",date);
                                 this.auxpedidos=
                                     {
                                         'fid_cargo':this.materiales,
-                                        'fecha_solicitud':this.date,
+                                        'fecha_solicitud': date,
                                         'pedidos':this.t,
                                     };
                                 console.log("PEDidos: ",this.auxpedidos);
