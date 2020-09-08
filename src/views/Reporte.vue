@@ -1,29 +1,19 @@
 <template>
-<v-container fluid>
+<v-container>
     <v-row align="center" justify="center">
 
   
     <!--**********************************5TO COMPONENTE************************************-->
-        <v-col cols="10" >
-                <v-card 
-                    :elevation="hover ? 24 : 6"
-              class="ma-0 pa-0"
-                    max-width="1200"
-                    outlined
-                    >
+        <v-col cols="12" lg="6">
+                <v-card class="ma-0 pa-7" max-width="100%">
                     <v-list-item three-line>
                         <v-list-item-content>
-                        <div class="overline mb-4">GENERAL</div>
                         <v-list-item-title class="headline mb-1">REPORTE GENERAL</v-list-item-title>
-                        <v-list-item-subtitle>Seleccione una de las siguientes opciones...</v-list-item-subtitle>
+                        <v-list-item-subtitle>Seleccione la fecha inicial y final</v-list-item-subtitle>
                         </v-list-item-content>
-
-                        <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="indigo darken-1"
-                        ></v-list-item-avatar>
                     </v-list-item>
+
+                    <!-- fechas -->
                     <v-row align="center" justify="center"> 
                         <v-col class="text-center" cols="4">
                           <v-menu
@@ -85,7 +75,7 @@
                             </div>
                         </v-col>
                     </v-row>
-
+                  <!-- end fechas -->
                     </v-card>
         </v-col>
     </v-row>
@@ -168,25 +158,6 @@
 <script>
 var f = new Date();
 
-if((f.getMonth()+1)<=9)
-{
-var m_hoy='0'+(f.getMonth()+1);
-}
-else
-{
-var m_hoy=f.getMonth()+1;
-}
-
-if(f.getDate()<=9)
-{
-  var d_hoy='0'+f.getDate();
-}
-else
-{
-  var d_hoy=f.getDate();
-}
-
-var a_hoy=f.getFullYear();
 import axios from 'axios'
 export default {
     data: () => ({
@@ -195,19 +166,12 @@ export default {
         dialog:false,
         variable_solicitud:'',
         users:[],
-        nombreinformeanual:'',
-        nombremessalida:'',
-        nombremesentrada:'',
-        nombremessaldo:'',
-        variable_reporte:'',
-        variable_reporte_salida:'',
-        	   imageName: '',
-		imageUrl: '',
-		imageFile: '',
         defaultSelected:{},
         defaultSelected1:{},
         defaultSelected2:{},
         defaultSelected3:{},
+        menu1: false,
+        menu2: false,
         fecha_ini: new Date().toISOString().substr(0, 10),
         fecha_fin: new Date().toISOString().substr(0, 10),
         }),
@@ -260,69 +224,6 @@ export default {
 			}
 		},
 
-        subirinformepdf()
-        {
-                        /*let compa=this;
-                        axios.post(compa.store+'/subirinformeanual', 
-                        { 
-                        imag: compa.imageUrl,
-                        nameimg:compa.imageName
-                        })
-                        .then(function (response) {
-                                console.log(response);
-                                compa.keep=response;
-                                console.log(compa.keep.data);
-
-                        })
-                        .catch(function (error) 
-                        {
-                        console.log(error);
-                        });    */             
-        },
-          generareporteanual()
-        {
-                      /*this.variable_reporte='';
-                      
-                      let compa = this;
-                       axios.post(compa.store+'/obtieneinformeanual',{
-                          nombreinfoanual:compa.nombreinformeanual
-                      }).then(function (response) 
-                      {
-                          console.log("resp pdf-> ", response.data);//resultado = response.data;
-
-                        // if(response.data!="")
-                        // {
-                            //setTimeout(compa.variable_reporte=response.data, 8000);
-                            compa.variable_reporte=response.data;
-                            compa.dialog3=true;
-                      //   }
-                      //   else
-                      //   {
-                        //     compa.variable_reporte="";
-                       //  } 
-                      }).
-                          catch(function (error) 
-                          {
-                              console.log("error", error)
-                          });*/
-    },
-    generarsalidas()
-    {
-                      
-                     /* let compa = this;
-                      axios.get(compa.store+'/reportesalida', 
-                      {})
-                      .then(function (response) 
-                      {
-                        console.log("JALA ",response.data);
-                        compa.variable_reporte_salida=response.data;
-                        compa.dialog2=true;
-                      })
-                      .catch(function (error) 
-                      {
-                        console.log(error);
-                      });*/
-          },
           generareportegeneral()
           {
             var token=sessionStorage.getItem('token');

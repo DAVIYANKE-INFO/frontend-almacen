@@ -4,7 +4,7 @@
           
         <v-row class="divangular" >
           <v-col class="divimagen" >
-            <img src="@/images/logo.png" alt="" class="image">
+            <img src="@/assets/logo.png" alt="" class="image">
             <br><br>
             <h2 id="textoblanco">Sistema de Gestión y Control de Almacén SISALM - AFCOOP</h2>
                               <!--<v-select id="textoblanco" style="width:250px;text-color:white;"

@@ -425,6 +425,7 @@ import axios from 'axios'
                     },
                     crearPedido: function () 
                     {  
+                        var comp = this;
 
                         if((this.bandera==1)&&(this.cantidad!=''))
                       {

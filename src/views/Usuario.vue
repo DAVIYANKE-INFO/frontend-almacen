@@ -48,9 +48,6 @@
             <template v-slot:activator="{ on }">
             <v-container fluid>
               <v-row align="center" justify="end">
-                <!--<v-col cols="8">
-                  <p class="text-left" style="font-size:25px;font-weight:bold; ">usuarios ALMACEN AFCOOP</p>                
-                </v-col>-->
                 <v-col cols="2">
                   <v-btn color="indigo darken-1" dark class="mb-2" v-on="on">NUEVO</v-btn>
                 </v-col>
@@ -89,13 +86,6 @@
                       <v-text-field v-model="editedItem.contraseña" label="Contraseña" color="indigo"></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <!--<v-text-field 
-                      v-model="editedItem.persona.fecha_nacimiento" 
-                      label="Fecha Nacimiento" 
-                      hint="AAAA/MM/DD formato" 
-                      color="indigo">-->
-                      </v-text-field>
-
                       <v-menu
           ref="menu"
           v-model="menu"
@@ -121,9 +111,6 @@
           </v-date-picker>
         </v-menu>
                     </v-col>
-                    <!--<v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.persona.sexo" label="Sexo (M ó F)" color="indigo"></v-text-field>
-                    </v-col>-->
                           <v-col cols="3">
                             <v-select
                               v-model="editedItem.persona.sexo"
@@ -248,7 +235,6 @@ export default {
       modal: false,
       menu2: false,
       dialog1: false,
-      keeps:[{"ci":"7066868","paterno":"ALEGRIA","materno":"QUISPE"}],
       headers: [
         { text: 'NRO. USUARIO', value: 'id_usuario'},
         { text: 'NOMBRE', value: 'persona.nombres' },
@@ -328,9 +314,6 @@ export default {
     {
       remove (item) 
       {
-        console.log("david--> ",item.nombre);
-        console.log("PEOPLE--> ",this.people);
-
         const index = this.friends.indexOf(item.id_rol)
         if (index >= 0) this.friends.splice(index, 1)
       },
@@ -342,7 +325,6 @@ export default {
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
-                console.log("PRUEBA OTRO SERVIDOR: ",response); 
                 comp.people=response.data.datos.rows;
                 }).
                 catch(function (error) 
@@ -358,7 +340,6 @@ export default {
                   headers: { Authorization: 'Bearer '+token }
                 }).then(function (response) 
                 {
-                console.log("PRUEBA OTRO SERVIDOR: ",response); 
                 comp.usuarios=response.data.datos.rows;
                 comp.usuariosaux=response.data.datos.rows;
                 for(var t=0;t<comp.usuariosaux.length;t++)
@@ -387,7 +368,6 @@ export default {
       },
       editItem (item) 
       {
-        console.log("ELEMENTO A EDITAR--> ",item);
         this.editedIndex = this.usuarios.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
@@ -397,17 +377,15 @@ export default {
     {
       var token=sessionStorage.getItem('token');
       let comp = this;
-      console.log("USUARIO A ELIMINAR==> ",item);
       const index = this.usuarios.indexOf(item)
        if(confirm('¿ Esta seguro que desea eliminar este elemento ?') && this.usuarios.splice(index, 1))
       {
                 //PARA LA ELIMINAR UNA USUARIO
                 axios.delete(comp.store+'/api/v1/usuario/'+item.id_usuario,{
                   headers: { Authorization: 'Bearer '+token },
-                }).then(function (response) 
+                }).then(function () 
                 {
-                console.log("RESPUESTA ELIMINAR USUARIO SERVIDOR: ",response); 
-                comp.$toastr.success('USUARIO ELIMINADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
+                  comp.$toastr.success('USUARIO ELIMINADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
                 }).
                 catch(function (error) 
                 {
@@ -419,8 +397,6 @@ export default {
     },
     close () 
     {
-      console.log("xxx-> editItem ",this.editedItem);
-      console.log("www-> defaultItem ",this.defaultItem);
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -431,13 +407,13 @@ export default {
     save () 
     {
       let comp = this;
+      var token = sessionStorage.getItem('token');
+      var t;
       if (this.editedIndex > -1) 
       {
         Object.assign(this.usuarios[this.editedIndex], this.editedItem)
                  //PARA EDITAR UNA USUARIO
-                console.log("editar--> ",comp.editedItem);
-                console.log("UPDATE FRIENDS--> ",this.friends);
-                var t={ 'nombres':this.editedItem.persona.nombres,
+                t = { 'nombres':this.editedItem.persona.nombres,
                         'usuario':this.editedItem.usuario,
                         'contrasena':this.editedItem.contraseña,
                         'primer_apellido':this.editedItem.persona.primer_apellido,
@@ -448,10 +424,9 @@ export default {
                         'roles':this.friends,//[1],
                       };
                 axios.put(comp.store+'/api/v1/usuario/'+comp.editedItem.id_usuario, t,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjoxLCJ1c3VhcmlvIjoiYWRtaW4iLCJpZF9yb2wiOjEsImlkX3BlcnNvbmEiOjEsInZlbmNpbWllbnRvIjoiMjAxOS0xMi0xN1QyMDowMjowNi42MTlaIn0.t3slQG2tWw_JT5NHn8lnAnZsZ47ObdzkmWxifvpStkI' },
-                }).then(function (response) 
+                  headers: { Authorization: 'Bearer '+token },
+                }).then(function () 
                 {
-                console.log("RESPUESTA EDITAR USUARIO SERVIDOR: ",response); 
                 comp.$toastr.success('USUARIO ACTUALIZADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
                 comp.initialize();
                 }).
@@ -464,10 +439,8 @@ export default {
       } 
       else 
       {
-        console.log("crear--> ",comp.editedItem);
-        console.log("SAVE friends--> ",this.friends);
                 //PARA LA CREACIÓN DE UNA USUARIO
-                var t={ 'nombres':this.editedItem.persona.nombres,
+                   t = { 'nombres':this.editedItem.persona.nombres,
                         'usuario':this.editedItem.usuario,
                         'contrasena':this.editedItem.contraseña,
                         'primer_apellido':this.editedItem.persona.primer_apellido,
@@ -478,12 +451,10 @@ export default {
                         'roles':this.friends,
                       };
    
-                console.log("guardar--> ",t);
                axios.post(comp.store+'/api/v1/usuario/', t ,{
-                  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c3VhcmlvIjoxLCJ1c3VhcmlvIjoiYWRtaW4iLCJpZF9yb2wiOjEsImlkX3BlcnNvbmEiOjEsInZlbmNpbWllbnRvIjoiMjAxOS0xMi0xN1QyMDowMjowNi42MTlaIn0.t3slQG2tWw_JT5NHn8lnAnZsZ47ObdzkmWxifvpStkI' },
-                }).then(function (response) 
+                  headers: { Authorization: 'Bearer '+ token },
+                }).then(function () 
                 {
-                console.log("RESPUESTA GUARDAR USUARIO SERVIDOR: ",response); 
                 comp.usuarios.push(comp.editedItem)
                 comp.$toastr.success('USUARIO CREADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
                 comp.initialize();

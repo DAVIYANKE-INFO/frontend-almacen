@@ -125,13 +125,11 @@
                       }).then(function (response) 
                       {
                          global.lista = response.data;
-                         console.log("respuesta de jwt: ", response.data.token);
                          global.$toastr.info('USUARIO AUTENTICADO EXITOSAMENTE', 'HECHO', {timeOut: 2000});
                          sessionStorage.setItem("token", ""+response.data.token);
                          
                         sessionStorage.setItem("usuario", response.data.datos.usuario.id_usuario);
                         
-                         // console.log("local ",response.data.datos.menu.length);
                         var david_menu=[];
                         for(var p=0;p<response.data.datos.menu.length;p++)
                         {

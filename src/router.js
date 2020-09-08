@@ -20,7 +20,7 @@ import Ingreso from './views/Ingreso.vue'
 import SalidaUsuario from './views/SalidaUsuario.vue'
 import UsuarioHistorial from './views/UsuarioHistorial.vue'
 
-const router = new Router({ });
+new Router({ });
 
 /*router.beforeEach((to, from, next) => {
     // ...

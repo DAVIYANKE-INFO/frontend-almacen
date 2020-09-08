@@ -8,7 +8,6 @@
     >
 <!--***********************************ESTE ES EL INICIO DE FORM FACTURA******************************************-->
     <v-card
-    :elevation="hover ? 24 : 6"
               class="ma-3 pa-3"
               outlined
               tile
@@ -221,7 +220,6 @@
 
 <!--***********************************ESTE ES EL INICIO DE AGREGA PRODUCTOS******************************************-->
      <v-card
-      :elevation="hover ? 24 : 6"
               class="ma-3 pa-3"
               outlined
               tile

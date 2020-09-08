@@ -20,16 +20,9 @@ Vue.use(require('vue-moment'), {
     moment
 })
  
-console.log(Vue.moment().locale())
- 
 Vue.use(VueToastr2)
-//import VueResourse from './vue-resourse'
 
-//Vue.use(VueResourse);
-//axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 /**************************VARIABLE GLOBAL************************************/
-//var ip="http://192.168.0.10/sideas-backend/public";
-//var ip="http://192.168.0.150:8000";
 var ip="http://192.168.0.130:4500";
 //var ip="http://192.168.0.130:4300";
 Vue.store= Vue.prototype.store = '';
