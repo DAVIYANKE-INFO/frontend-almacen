@@ -9,393 +9,214 @@
                     icons-and-text
                 >
                     <v-tabs-slider color="yellow"></v-tabs-slider>
+                        <v-tab href="#tab-1">
+                            PENDIENTES
+                            <v-icon>calendar_today</v-icon>
+                        </v-tab>
   
-                    <v-tab href="#tab-1">
-                      PENDIENTES
-                      <v-icon>calendar_today</v-icon>
-                    </v-tab>
-  
-                    <v-tab href="#tab-2">
-                      APROBADAS
-                      <v-icon>list_alt</v-icon>
-                    </v-tab>
+                        <v-tab href="#tab-2">
+                            APROBADAS
+                            <v-icon>list_alt</v-icon>
+                        </v-tab>
 
-                    <v-tab-item
-                      v-for="i in 2"
-                      :key="i"
-                      :value="'tab-' + i"
-                    >
-
-                        <div v-if="i==1">
-                            <v-row>
-                                <v-col cols="12">
-                                    <v-container fluid>
-
-                                        <!--*******************************INICIO BUSCADOR***************************************-->
-                                        <v-toolbar flat color="white" class="elevation-1">
-                                            <v-toolbar-title style="font-size:25px;font-weight:bold;color:#394BCD;">SOLICITUDES PENDIENTES A REVISIÓN</v-toolbar-title>
-                                                <v-divider
-                                                    class="mx-2"
-                                                    inset
-                                                    vertical
-                                                ></v-divider>
-
-                                                <v-spacer></v-spacer>
-
-                                                <v-text-field
-                                                    v-model="search_2"
-                                                    append-icon="search"
-                                                    label="Buscar..."
-                                                    single-line
-                                                    hide-details
-                                                ></v-text-field>
-                                                <v-divider
-                                                    class="mx-2"
-                                                    inset
-                                                    vertical
-                                                ></v-divider>    
-                                        </v-toolbar>
-                                        <!--*******************************FIN BUSCADOR***************************************-->
-
-
-                                        <v-data-table
-                                            :headers="headers"
-                                            :items="desserts"
-                                            sort-by="codigo_pedido" 
-                                            sort-desc="true"
-                                            :search="search_2"
-                                            class="elevation-1"
-                                            :items-per-page="15"
-                                            :footer-props="{ 
+                        <v-tab-item
+                            v-for="i in 2"
+                            :key="i"
+                            :value="'tab-' + i"
+                        >
+                            <div v-if="i==1">
+                                <v-card>
+                                    <v-card-title>
+                                        <v-spacer></v-spacer>
+                                        <v-text-field
+                                        v-model="search"
+                                        append-icon="mdi-magnify"
+                                        label="Buscar"
+                                        single-line
+                                        hide-details
+                                        ></v-text-field>
+                                    </v-card-title>
+                                    <v-data-table
+                                        :headers="headers"
+                                        :items="datos_pendiente"
+                                        :search="search"
+                                        :expanded.sync="expanded2"
+                                        show-expand
+                                        single-expand
+                                        :items-per-page="10"
+                                        :footer-props="{  
                                             'items-per-page-text': 'Filas por pagina:',
-                                            'items-per-page-all-text': 'Todos'}"
-                                            dense
-                                        >
-
-                                        <template v-slot:top>
-
-                                            <v-divider
-                                                class="mx-4"
-                                                inset
-                                                vertical
-                                            ></v-divider>
-                                            <v-spacer></v-spacer>
-
+                                            'items-per-page-all-text': 'Todos'}"                                 
+                                    >
+                                        <template v-slot:expanded-item="{ headers, item }">
+                                            <td :colspan="5"  style="text-align: center; padding-left: 150px">
+                                                <div>
+                                                    <v-simple-table >
+                                                        <thead style="background-color: lightyellow; color: #fff">
+                                                            <tr>
+                                                                <th class="text-left">Nro.</th>
+                                                                <th class="text-left">Nombre</th>
+                                                                <th class="text-left">Cantidad Solicitada</th>
+                                                                <th class="text-left">Cantidad Aprobada</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="(productos, index) in item.productos" :key="item.name">
+                                                                <td>{{index + 1}}</td>
+                                                                <td>{{productos.nombre}}</td>
+                                                                <td>{{productos.cantidad_solicitada}}</td>
+                                                                <td>{{productos.cantidad_aprobada}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </v-simple-table>
+                                                </div>
+                                            </td>
                                         </template>
-
-                                        <template v-slot:item.action="{ item }">
-
-                                            <v-row justify="center">
-                                                <v-col cols="10">
-                                            
-                                                    <v-expansion-panels>
-                                                        <v-expansion-panel
-                                                            :key="1"
-                                                            width="50%"
-                                                            v-model="panel_david"
-                                                        >
-
-                                                            <v-expansion-panel-header>Pedidos</v-expansion-panel-header>
-                                                            <v-expansion-panel-content>
-                                                            
-                                                                <v-row>
-                                                                    <v-col cols="12">
-                                                                    
-                                                                        <v-simple-table dense>
-                                                                            <template v-slot:default>
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th class="text-left">Codigo</th>
-                                                                                        <th class="text-left">Nombre</th>
-                                                                                        <th class="text-left">Cantidad Solicitada</th>
-                                                                                        <!--<th class="text-left">Stock actual</th>
-                                                                                        <th class="text-left">Stock a Quedar</th>-->
-                                                                                        <th class="text-left">Unidad</th>                       
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <tr v-for="(productitos, index) in item.productos" :key="item.name">
-                                                                                        <td>{{ productitos.id_pedido }}</td>
-                                                                                        <td>{{ productitos.nombre}}</td>
-                                                                                        <td>
-                                                                                            <span v-if="formActualizar && idActualizar == index">
-                                                                                                <!-- Formulario para actualizar -->
-                                                                                                <input style="background-color:#F9EDAF;" v-model="edadActualizar" type="text" class="form-control">
-                                                                                            </span>
-                                                                                            <span v-else>
-                                                                                                <!-- Dato nombre -->
-                                                                                                {{ productitos.cantidad_solicitada }}
-                                                                                            </span>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </template>
-                                                                        </v-simple-table> 
-                                                                    </v-col>
-                                                                </v-row>
-                                                            </v-expansion-panel-content>
-                                                        </v-expansion-panel>
-                                                    </v-expansion-panels>
-                                                </v-col>
-                                            </v-row> 
-                                            <v-row justify="center">
-                                                <v-spacer></v-spacer>
-                                                <v-btn class="text-center" color="indigo darken-1" text @click="solicitud(item)">ACEPTAR</v-btn>                 
-                                            </v-row>  
-
+                                    
+                                    </v-data-table>
+                                </v-card>
+                            </div>
+                            <div v-if="i==2">
+                                <v-card>
+                                    <v-card-title>
+                                        <v-spacer></v-spacer>
+                                        <v-text-field
+                                        v-model="search"
+                                        append-icon="mdi-magnify"
+                                        label="Buscar"
+                                        single-line
+                                        hide-details
+                                        ></v-text-field>
+                                    </v-card-title>
+                                    <v-data-table
+                                        :headers="headersP"
+                                        :items="datos_aprobados"
+                                        :search="search"
+                                        :expanded.sync="expanded"
+                                        show-expand
+                                        single-expand
+                                        item-key="codigo_pedido"
+                                        :items-per-page="10"
+                                        :footer-props="{  
+                                            'items-per-page-text': 'Filas por pagina:',
+                                            'items-per-page-all-text': 'Todos'
+                                        }"
+                                    >
+                                        <template v-slot:expanded-item="{ headersP, item }">
+                                            <td :colspan="5"  style="text-align: center; padding-left: 150px">
+                                                <div>
+                                                    <v-simple-table >
+                                                        <thead style="background-color: lightyellow; color: #fff">
+                                                            <tr>
+                                                                <th class="text-left">Nro.</th>
+                                                                <th class="text-left">Nombre</th>
+                                                                <th class="text-left">Cantidad Solicitada</th>
+                                                                <th class="text-left">Cantidad Aprobada</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="(productos, index) in item.productos" :key="item.name">
+                                                                <td>{{index + 1}}</td>
+                                                                <td>{{productos.nombre}}</td>
+                                                                <td>{{productos.cantidad_solicitada}}</td>
+                                                                <td>{{productos.cantidad_aprobada}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </v-simple-table>
+                                                </div>
+                                            </td>
                                         </template>
-                                        </v-data-table>
-                                    </v-container>        
-                                </v-col> 
-                            </v-row>
-                        </div>      
-
-                        <div v-if="i==2">
-                            <v-row>
-                                <v-col cols="12">
-                                    <center>
-                                        <v-form>
-                                            <v-container fluid>
-                          
-                                                <center>
-                                                    <!--*******************************INICIO BUSCADOR***************************************-->
-                                                    <v-toolbar flat color="white" class="elevation-1">
-                                                        <v-toolbar-title style="font-size:25px;font-weight:bold;color:#394BCD;">SOLICITUDES APROBADAS</v-toolbar-title>
-                                                        
-                                                        <v-divider
-                                                            class="mx-2"
-                                                            inset
-                                                            vertical
-                                                        ></v-divider>
-
-                                                        <v-spacer></v-spacer>
-
-                                                        <v-text-field
-                                                            v-model="search"
-                                                            append-icon="search"
-                                                            label="Buscar..."
-                                                            single-line
-                                                            hide-details
-                                                        ></v-text-field>
-                                                        <v-divider
-                                                            class="mx-2"
-                                                            inset
-                                                            vertical
-                                                        ></v-divider>    
-                                                    </v-toolbar>
-                                                    <!--*******************************FIN BUSCADOR***************************************-->
-
-                                                    <v-data-table
-                                                        :headers="headers_para_aprobados"
-                                                        :items="aprobados"
-                                                        :search="search"
-                                                        class="elevation-1"
-                                                        sort-by="codigo_pedido"
-                                                        :items-per-page="15"
-                                                        :footer-props="{  
-                                                        'items-per-page-text': 'Filas por pagina:',
-                                                        'items-per-page-all-text': 'Todos'}"
-                                                    >
-
-                                                        <template v-slot:top>
-                                                            <v-divider
-                                                              class="mx-4"
-                                                              inset
-                                                              vertical
-                                                            ></v-divider> 
-                                                        </template>
-                                                    </v-data-table>
-                                                </center>
-                                            </v-container>
-                                        </v-form>
-                                    </center>         
-                                </v-col> 
-                            </v-row>
-                        </div>
-                    </v-tab-item>
+                                    
+                                    </v-data-table>
+                                </v-card>
+                            </div>
+                        </v-tab-item>
                 </v-tabs>
             </v-col>
-        </v-row>  
+        </v-row>
     </v-container>
 </template>
 
 
-<script>
-import axios from 'axios'
-import moment from 'moment'
-export default 
-{
+
+ <script>
+ import axios from 'axios';
+ import moment from 'moment';
+
+  export default {
     data: vm => ({
-        panel_david:true,
-
-/*************************************ESTO ES PARA APROBADOS**********************************************/
-        search:'',
-        search_2:'',
-        headers_para_aprobados: [
-            {
-                text: 'Codigo del pedido',
-                align: 'left',
-                // sortable: false,
-                value: 'codigo_pedido',
-            },
-            { text: 'Cargo', value: 'cargo' },
-            { text: 'fecha ', value: 'fecha_aprobacion' },
-            { text: 'ESTADO', value: 'estado' },
-            { text: 'CARGO', value: 'cargo_usuario' },
-            // { text: 'Properties' , value: 'objetos' },
-            // { text: 'Acciones', value: 'action', sortable: false },
-        ],
-        aprobados: [],
-        //  editedIndex: -1,
-        editedItemaprobados: 
-        {
-            codigo_pedido:'',
-            usuario:'',
-            fecha_solicitud:'',
-            estado:'',
-            cargo_usuario:''
-        },
-        defaultItemaprobados: 
-        {          
-            codigo_pedido:'',
-            usuario:'',
-            fecha_solicitud:'',
-            estado:'',
-            cargo_usuario:''
-        },
-        variable_solicitud:'',
-        dialog:false,
-/*************************************FIN ESTO ES PARA APROBADOS**********************************************/
-
-        // Input nombre
-        nombre: '',
-        // Input edad
-        edad: '',
-        // Ver o no ver el formulario de actualizar
-        formActualizar: false,
-        // La posición de tu lista donde te gustaría actualizar 
-        idActualizar: -1,
-        // Input nombre dentro del formulario de actualizar
-        nombreActualizar: '',
-        // Input edad dentro del formulario de actualizar
-        edadActualizar: '',
-        // Lista de pacientes
-        pacientes: [],
-
+        search: '',
         headers: [
-        {
-            text: 'Nro.',
-            align: 'left',
-            //sortable: false,
-            value: 'id_pedido',
-        },
-        { text: 'NOMBRE', value: 'usuario' },
-        { text: 'FECHA', value: 'fecha_solicitud' },
-        { text: 'ESTADO', value: 'estado' },
-     // { text: 'Protein (g)', value: 'protein' },
-     // { text: 'Properties' , value: 'objetos' },
-        { text: 'Acciones', value: 'action', sortable: false },
+            { text: 'Codigo del Pedido', align: 'left', sortable: true, value: 'codigo_pedido' },
+            { text: 'Estado', value: 'estado' },
+            { text: 'Fecha solicitud', value: 'fecha_solicitud' },
+            { text: 'Fecha aprobado', value: 'fecha_aprobacion' },
+            { text: 'Cargo', value: 'cargo' },
         ],
+        headersP: [
+            { text: 'Codigo del Pedido', align: 'left', sortable: true, value: 'codigo_pedido' },
+            { text: 'Estado', value: 'estado' },
+            { text: 'Fecha solicitud', value: 'fecha_solicitud' },
+            { text: 'Fecha aprobado', value: 'fecha_aprobacion' },
+            { text: 'Cargo', value: 'cargo' },
+        ],
+        datos_pendiente: [],
+        datos_aprobados: [],
+        expanded: [],
+        expanded2: [],
 
-        desserts: [],
-        dessertsaux:[],
-        editedIndex: -1,
-        veraItem: [{
-          id_producto: '',
-          nombreproducto: '',
-          cantidad: '',
-          estadito:'',
-        }],
-     
     }),
+    methods: {
 
-    methods: 
-    {
-        solicitud:function(item)
-        {
-            //console.log("que llega--> ",index);
-            const index = this.desserts.indexOf(item)
-            this.desserts.splice(index, 1)
-            // this.desserts.splice(index, 1);
-        },
-
-        inicializasolicitudes ()
-        {
-            var token=sessionStorage.getItem('token');
+        inicializasolicitudes () {
             let comp = this;
-            axios.get(comp.store+'/api/v1/producto/pedido/usuario/pendiente',{
+            var token=sessionStorage.getItem('token');
+            axios.get(this.store+'/api/v1/producto/pedido/usuario/pendiente',{
               headers: { Authorization: 'Bearer '+token }
-            }).then(function (response) 
-               {
-                    console.log("SOLICITUDES OFICIALes ",response.data.datos); 
-                    comp.dessertsaux=response.data.datos; 
-                    comp.desserts=response.data.datos;
-                    if(comp.dessertsaux===undefined)
-                    {
-                      console.log("vacio []");
+            }).then(function (response) {
+
+                comp.datos_pendiente = response.data.datos;
+                    if(comp.datos_pendiente !== undefined) {
+                        for(let t = 0;t < comp.datos_pendiente.length; t++) {
+                            comp.datos_pendiente[t].fecha_aprobacion = moment(comp.datos_pendiente[t].fecha_aprobacion).format('DD')+"-"+moment(comp.datos_pendiente[t].fecha_aprobacion).format('MM')+"-"+moment(comp.datos_pendiente[t].fecha_aprobacion).format('YYYY');
+                            comp.datos_pendiente[t].fecha_solicitud = moment(comp.datos_pendiente[t].fecha_solicitud).format('DD')+"-"+moment(comp.datos_pendiente[t].fecha_solicitud).format('MM')+"-"+moment(comp.datos_pendiente[t].fecha_solicitud).format('YYYY');
+                        }
                     }
-                    else
-                    {
-                      console.log("NO vacio []");
-                      for(var t=0;t<comp.dessertsaux.length;t++)
-                      {
-                          comp.desserts[t].fecha_solicitud=moment(comp.dessertsaux[t].fecha_solicitud).format('DD')+"-"+moment(comp.dessertsaux[t].fecha_solicitud).format('MM')+"-"+moment(comp.dessertsaux[t].fecha_solicitud).format('YYYY');//+ " | " + moment(comp.dessertsaux[t].fecha_solicitud).format('h:mm:ss');
-                      }
-                    }
-                    console.log("--> ",comp.desserts)
                 }).
                 catch(function (error) 
                 {
                     console.log("error", error)
                 }); 
-
-            console.log("--> ",this.desserts)
-
         },
-
-
-        initializeaprobados () 
-        {
+        initializeaprobados () {
             var token=sessionStorage.getItem('token');
-            this.aprobados=[];
             let comp = this;
             axios.get(comp.store+'/api/v1/producto/pedido/usuario/aprobado',{
               headers: { Authorization: 'Bearer '+token }
-            }).then(function (response) 
-                {
-                    console.log("SOLICITUDES APROBADAS--> ",response.data.datos); 
-                    comp.aprobados=response.data.datos;
-                    comp.aprobadosaux=response.data.datos;
-                    if(comp.aprobadosaux===undefined)
-                    {
-                        console.log("vacio []");
-                      
+            }).then(function (response) {
+                comp.datos_aprobados = response.data.datos;
+                if(comp.datos_aprobados !== undefined) {
+                    for(var t = 0; t < comp.datos_aprobados.length; t++) {
+                        comp.datos_aprobados[t].fecha_aprobacion = moment(comp.datos_aprobados[t].fecha_aprobacion).format('DD')+"-"+moment(comp.datos_aprobados[t].fecha_aprobacion).format('MM')+"-"+moment(comp.datos_aprobados[t].fecha_aprobacion).format('YYYY');
+                        comp.datos_aprobados[t].fecha_solicitud = moment(comp.datos_aprobados[t].fecha_solicitud).format('DD')+"-"+moment(comp.datos_aprobados[t].fecha_solicitud).format('MM')+"-"+moment(comp.datos_aprobados[t].fecha_solicitud).format('YYYY');
                     }
-                    else
-                    {
-                        console.log("NO vacio []");
-                      for(var t=0;t<comp.aprobadosaux.length;t++)
-                      {
-                             // console.log("apro pasas--> ", moment(comp.aprobadosaux[t].fecha_aprobacion).format('DD')+"-"+moment(comp.aprobadosaux[t].fecha_aprobacion).format('MM')+"-"+moment(comp.aprobadosaux.fecha_aprobacion).format('YYYY')+ " | " + moment(comp.aprobadosaux.fecha_aprobacion).format('h:mm:ss'));
-                            //this.$moment(comp.dessertsaux._fecha_modificacion).format("DD"))
-                            comp.aprobados[t].fecha_aprobacion=moment(comp.aprobadosaux[t].fecha_aprobacion).format('DD')+"-"+moment(comp.aprobadosaux[t].fecha_aprobacion).format('MM')+"-"+moment(comp.aprobadosaux[t].fecha_aprobacion).format('YYYY');//+ " | " + moment(comp.dessertsaux[t].fecha_solicitud).format('h:mm:ss');
-                      }
-                    }
-                    
-                }).
-                catch(function (error) 
-                {
-                    console.log("error", error)
-                }); 
-                console.log("--> ",this.aprobados)
+                }
+            }).
+            catch(function (error) {
+                console.log("error", error)
+            });
         },
-  },
-  created: function() 
-  {
-    this.inicializasolicitudes();
-    this.initializeaprobados();
-    let varia =this;    
-    varia.$store.commit('SET_LAYOUT', 'panelprincipal-layout'); 
-  }
+        format_date(value){
+            if (value) {
+                return moment(String(value)).format('DD-MM-YYYY')
+            }
+        },
+    },
+    created: function() {
+        this.inicializasolicitudes();
+        this.initializeaprobados();
+        let varia =this;    
+        varia.$store.commit('SET_LAYOUT', 'panelprincipal-layout'); 
+    }
 }
 </script>

@@ -23,7 +23,7 @@ Vue.use(require('vue-moment'), {
 Vue.use(VueToastr2)
 
 /**************************VARIABLE GLOBAL************************************/
-var ip="http://192.168.0.130:4500";
+var ip="http://192.168.0.131:4500";
 //var ip="http://192.168.0.130:4300";
 Vue.store= Vue.prototype.store = '';
 Vue.storepublic = Vue.prototype.storepublic = ip;

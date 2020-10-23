@@ -19,6 +19,7 @@ import Rol from './views/Rol.vue'
 import Ingreso from './views/Ingreso.vue'
 import SalidaUsuario from './views/SalidaUsuario.vue'
 import UsuarioHistorial from './views/UsuarioHistorial.vue'
+import Contrasena from './views/Contrasena.vue'
 
 new Router({ });
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/cambiarContrasena',
+      name: 'contrasena',
+      component: Contrasena
     },
     {
       path: '/principal',

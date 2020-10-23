@@ -112,24 +112,27 @@
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title>
-        <h2 id="textocolorblanco">SISALM</h2>
+        <h2 id="textocolorblanco" @click="home()" style="cursor:pointer">SISALM</h2>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
+          <!-- <v-btn class="ma-2" outlined color="white" @click="cambiarContrasena()">Cambiar Contraseña</v-btn> -->
           <v-btn class="ma-2" outlined color="white" @click="salir()">Cerrar Sesión</v-btn>
      
 
       <v-btn id="textocolorblanco" class="mx-2" fab dark large
-        icon
+        icon 
       >
              <v-avatar
           size="60px"
           item
+          
         >
           <v-img
           width="10%"
             src="@/assets/usuario_general.jpg"
             alt="Vuetify"
+            @click="cambiarContrasena()"
           >
           </v-img>
           </v-avatar>
@@ -211,6 +214,12 @@ var menu=[];
           sessionStorage.clear();
           this.$router.push('/');
           location.reload();
+        },
+        cambiarContrasena() {
+          this.$router.push('/cambiarContrasena')
+        },
+        home() {
+          this.$router.push('/principal')
         }
       }
   }
