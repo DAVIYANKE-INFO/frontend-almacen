@@ -21,11 +21,23 @@
                         <v-container style="text-align:center">
                             <v-row>
                                 <v-col cols="12" sm="6" md="4" lg="6">
-                                    <v-text-field v-model="contrasena_antigua" label="contraseña anterior" color="indigo"></v-text-field>
+                                    <v-text-field v-model="contrasena_antigua" 
+                                                  label="contraseña anterior"
+                                                  color="indigo"
+                                                  prepend-icon="lock" :append-icon="eye ? 'visibility_off' : 'visibility'"
+                                                  @click:append="pass1"
+                                                  :type="show ? 'text' : 'password'">
+                                    </v-text-field>
                                 </v-col>
 
                                 <v-col cols="12" sm="6" md="4" lg="6">
-                                    <v-text-field v-model="contrasena_nueva" label="contraseña nueva" color="indigo"></v-text-field>
+                                    <v-text-field v-model="contrasena_nueva"
+                                                  label="contraseña nueva"
+                                                  color="indigo"
+                                                  prepend-icon="lock" :append-icon="eye1 ? 'visibility_off' : 'visibility'"
+                                                  @click:append="pass2"
+                                                  :type="show1 ? 'text' : 'password'">
+                                    </v-text-field>
                                 </v-col>
                             </v-row>
                             <v-row align="center" justify="end">            
@@ -56,8 +68,20 @@ export default {
     data: vm => ({
         contrasena_antigua: '',
         contrasena_nueva: '',
+        show: false,
+        show1: false,
+        eye: true,
+        eye1: true
     }),
     methods: {
+        pass1() {
+            this.eye = !this.eye;
+            this.show = !this.show;
+        },
+        pass2() {
+            this.eye1 = !this.eye1;
+            this.show1 = !this.show1;
+        },
         cancelar(){
             this.contrasena_antigua = '';
             this.contrasena_nueva = '';
@@ -66,7 +90,6 @@ export default {
         guardar() {
             const token = sessionStorage.getItem('token');
             const usuario = sessionStorage.getItem('usuario');
-            console.log('usuario: ', usuario);
 
             let comp = this;
             const body = {
@@ -75,10 +98,14 @@ export default {
             }
             axios.post(comp.store+`/api/v1/usuario/${usuario}/cambiar_contrasena`, body, { headers: { Authorization: 'Bearer '+token } })
                 .then((response) => {
-                    console.log('response: ', response);
+                    if (response.data.finalizado) {
+                        comp.$toastr.success(response.data.mensaje, 'Finalizado', {timeOut: 2000});
+                    } else {
+                        comp.$toastr.warning('La contraseña anterior no es la misma guardada, verifique e intente denuevo.', 'Finalizado', {timeOut: 2000}); 
+                    }
                 })
                 .catch((error) => {
-                    console.log("error", error)
+                    comp.$toastr.error('Hubo un error en el sistema, vuelva a intentar mas tarde.', 'Finalizado', {timeOut: 2000});
                 });
         }
     }
